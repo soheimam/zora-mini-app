@@ -67,9 +67,9 @@ export function ZoraWalletInput() {
 
   if (tokens.length > 0 && profileData) {
     return (
-      <div className="relative">
+      <div className="w-full">
         <Collage tokens={tokens} displayName={profileData.displayName || ''} />
-        <div className="text-center mt-4">
+        <div className="flex justify-center mt-4 mb-6">
           <Button variant="outline" onClick={handleReset}>
             Try another handle
           </Button>

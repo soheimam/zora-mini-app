@@ -83,7 +83,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col min-h-screen font-sans text-[var(--app-foreground)] mini-app-theme from-[var(--app-background)] to-[var(--app-gray)]">
-      <div className="w-full max-w-md mx-auto px-4 py-3">
+      <div className="w-full mx-auto px-4 py-3">
         <header className="flex justify-between items-center mb-3 h-11">
           <div>
             <div className="flex items-center space-x-2">
@@ -106,7 +106,7 @@ export default function App() {
           <div>{saveFrameButton}</div>
         </header>
 
-        <main className="flex-1 flex min-h-screen flex-col items-center justify-center p-2 md:p-4 bg-white">
+        <main className="flex-1 flex min-h-screen flex-col items-center justify-center p-0 bg-white">
           <ZoraWalletInput />
         </main>
 

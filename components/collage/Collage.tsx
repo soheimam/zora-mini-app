@@ -1,83 +1,77 @@
 import { CollageImage } from './CollageImage'
+import { ZoraToken } from '@/app/api/zora-tokens/route'
 
 export function Collage({ tokens, displayName }: { tokens: ZoraToken[], displayName: string }) {
-    console.log(JSON.stringify(tokens, null, 2))
+  // Ensure we have at least 5 placeholders for the grid
+  const safeTokens = [...tokens]
+  while (safeTokens.length < 6) {
+    safeTokens.push({} as ZoraToken)
+  }
+
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white p-4 md:p-6">
-      <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2 md:gap-3 lg:gap-4 relative">
-
-        {/* Dynamic name heading */}
-        <div className="col-span-2 md:col-span-3 md:col-start-6 row-start-1 z-30 flex justify-center items-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black" style={{ fontFamily: 'cursive' }}>
-            {displayName || 'Summer'}
-          </h1>
-        </div>
-
-        {/* Token 1 — large image */}
-        <div className="col-span-2 md:col-span-4 row-span-3 z-10 md:col-start-1 md:row-start-1">
-          <CollageImage 
-            src={tokens[0]?.imageUrl.medium || '/placeholder.svg'}
-            alt={tokens[0]?.name || 'Token 1'}
-            className="min-h-[200px] md:min-h-[300px]" 
-            priority 
-          />
-        </div>
-
-        {/* Token 2 */}
-        <div className="col-span-2 md:col-span-4 row-span-3 z-20 md:col-start-5 md:row-start-2">
-          <CollageImage 
-            src={tokens[1]?.imageUrl.medium || '/placeholder.svg'}
-            alt={tokens[1]?.name || 'Token 2'}
-            className="min-h-[180px] md:min-h-[260px]" 
-          />
-        </div>
-
-        {/* Personalized token title */}
-        <div className="col-span-2 row-span-1 z-30 flex items-center md:col-start-9 md:row-start-3">
-          <p
-            className="text-lg md:text-xl font-bold transform md:-rotate-90 md:origin-center"
-            style={{ fontFamily: 'cursive' }}
-          >
-            {tokens[0]?.name || 'August with love'}
+    <div className="w-full max-w-4xl mx-auto p-4 md:p-6 bg-white">
+      <div className="relative">
+        {/* Main title overlapping the grid */}
+        <h1 className="absolute left-1/2 top-6 -translate-x-1/2 text-4xl md:text-5xl lg:text-6xl font-bold text-black z-40"
+            style={{ fontFamily: 'cursive' }}>
+          {displayName || 'soheybuildsbase'}
+        </h1>
+        
+        {/* Stylish subtitle */}
+        <div className="absolute right-10 top-1/3 z-40">
+          <p className="text-xl md:text-2xl font-medium transform rotate-90 origin-center"
+             style={{ fontFamily: 'cursive' }}>
+            Fluffy cats
           </p>
         </div>
 
-        {/* Token 3 */}
-        <div className="col-span-2 md:col-span-4 row-span-3 z-20 md:col-start-1 md:row-start-4">
-          <CollageImage 
-            src={tokens[2]?.imageUrl.medium || '/placeholder.svg'}
-            alt={tokens[2]?.name || 'Token 3'}
-            className="min-h-[180px] md:min-h-[250px]" 
-          />
-        </div>
+        {/* Grid layout that matches the second image */}
+        <div className="grid grid-cols-6 gap-2 md:gap-3 mt-20">
+          {/* First row */}
+          <div className="col-span-3 aspect-square">
+            <CollageImage 
+              src={safeTokens[0]?.imageUrl?.medium || '/placeholder.svg'}
+              alt={safeTokens[0]?.name || 'Token 1'}
+              className="h-full w-full object-cover" 
+              priority 
+            />
+          </div>
+          <div className="col-span-3 aspect-square">
+            <CollageImage 
+              src={safeTokens[1]?.imageUrl?.medium || '/placeholder.svg'}
+              alt={safeTokens[1]?.name || 'Token 2'}
+              className="h-full w-full object-cover" 
+            />
+          </div>
+          
+          {/* Middle row */}
+          <div className="col-span-2 aspect-square">
+            <CollageImage 
+              src={safeTokens[2]?.imageUrl?.medium || '/placeholder.svg'}
+              alt={safeTokens[2]?.name || 'Token 3'}
+              className="h-full w-full object-cover" 
+            />
+          </div>
+          <div className="col-span-4 aspect-square">
+            <CollageImage 
+              src={safeTokens[3]?.imageUrl?.medium || '/placeholder.svg'}
+              alt={safeTokens[3]?.name || 'Token 4'}
+              className="h-full w-full object-cover" 
+            />
+          </div>
 
-        {/* Token 4 */}
-        <div className="col-span-2 md:col-span-3 row-span-3 z-10 md:col-start-5 md:row-start-5">
-          <CollageImage 
-            src={tokens[3]?.imageUrl.medium || '/placeholder.svg'}
-            alt={tokens[3]?.name || 'Token 4'}
-            className="min-h-[180px] md:min-h-[220px]" 
-          />
+          {/* Bottom row */}
+          <div className="col-span-4 aspect-square">
+            <CollageImage 
+              src={safeTokens[4]?.imageUrl?.medium || '/placeholder.svg'}
+              alt={safeTokens[4]?.name || 'Token 5'}
+              className="h-full w-full object-cover" 
+            />
+          </div>
+          <div className="col-span-2 aspect-square">
+            <div className="h-full w-full bg-[#dcd3ba]" />
+          </div>
         </div>
-
-        {/* Token 5 */}
-        <div className="col-span-2 md:col-span-4 row-span-3 z-10 md:col-start-8 md:row-start-4">
-          <CollageImage 
-            src={tokens[4]?.imageUrl.medium || '/placeholder.svg'}
-            alt={tokens[4]?.name || 'Token 5'}
-            className="min-h-[180px] md:min-h-[250px]" 
-          />
-        </div>
-
-        {/* Art + style blocks */}
-        <div className="col-span-1 row-span-1 z-5 md:col-start-4 md:row-start-7">
-          <div className="w-full h-full aspect-square bg-black opacity-70 rounded-full blur-sm" />
-        </div>
-        <div className="col-span-1 row-span-1 z-5 md:col-start-9 md:row-start-2">
-          <div className="w-full h-full aspect-square bg-black opacity-50 rounded-full blur-sm" />
-        </div>
-        <div className="col-span-1 row-span-2 bg-[#f5e8d6] md:col-start-2 md:row-start-7" />
-        <div className="col-span-1 row-span-2 bg-[#f5e8d6] md:col-start-10 md:row-start-6" />
       </div>
     </div>
   )
