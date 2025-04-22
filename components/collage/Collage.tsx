@@ -9,24 +9,24 @@ export function Collage({ tokens, displayName }: { tokens: ZoraToken[], displayN
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4 md:p-6 bg-white">
-      <div className="relative">
+    <div className="w-full bg-white">
+      <div className="relative w-full min-w-[320px] max-w-[480px] md:max-w-2xl mx-auto px-2 py-4">
         {/* Main title overlapping the grid */}
-        <h1 className="absolute left-1/2 top-6 -translate-x-1/2 text-4xl md:text-5xl lg:text-6xl font-bold text-black z-40"
+        <h1 className="absolute left-1/2 top-8 -translate-x-1/2 text-4xl md:text-5xl lg:text-6xl font-bold text-black z-40"
             style={{ fontFamily: 'cursive' }}>
           {displayName || 'soheybuildsbase'}
         </h1>
         
         {/* Stylish subtitle */}
-        <div className="absolute right-10 top-1/3 z-40">
+        <div className="absolute right-2 md:right-10 top-1/3 z-40">
           <p className="text-xl md:text-2xl font-medium transform rotate-90 origin-center"
              style={{ fontFamily: 'cursive' }}>
             Fluffy cats
           </p>
         </div>
 
-        {/* Grid layout that matches the second image */}
-        <div className="grid grid-cols-6 gap-2 md:gap-3 mt-20">
+        {/* Grid layout that matches the second image but takes up full width */}
+        <div className="grid grid-cols-6 gap-2 md:gap-3 mt-20 mb-6">
           {/* First row */}
           <div className="col-span-3 aspect-square">
             <CollageImage 
