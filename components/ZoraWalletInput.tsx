@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Collage } from '@/components/collage/Collage'
 import { validateHandle } from '@/lib/validateWallet'
 import { ZoraTokenResponse, ZoraToken } from '@/app/api/zora-tokens/route'
+import { FooterButtons } from '@/components/FooterButtons'
 
 export function ZoraWalletInput() {
   const [handle, setHandle] = useState('')
@@ -70,13 +71,7 @@ export function ZoraWalletInput() {
     return (
       <div className="w-full">
         <Collage selectedToken={selectedToken} setSelectedToken={setSelectedToken} tokens={tokens} displayName={profileData.displayName || ''} />
-        <div className="flex justify-center mt-4 mb-6">
-          <button 
-            onClick={handleReset}
-            className="border border-gray-700 hover:border-lime-300 text-gray-400 py-3 px-6 font-mono tracking-wider transition-colors duration-300">
-            Try another handle
-          </button>
-        </div>
+        <FooterButtons onReset={handleReset} />
       </div>
     )
   }

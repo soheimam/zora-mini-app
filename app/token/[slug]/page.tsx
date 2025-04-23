@@ -11,7 +11,7 @@ async function fetchTokenData(address: string) {
     
     // Create an absolute URL
     const apiUrl = `${protocol}://${host}/api/token/${address}`;
-    console.log(`Fetching token data from: ${apiUrl}`);
+    
     
     const response = await fetch(apiUrl, {
       next: { revalidate: 300 }, // Revalidate every 5 minutes
