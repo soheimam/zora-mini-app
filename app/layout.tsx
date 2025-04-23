@@ -3,6 +3,8 @@ import '@coinbase/onchainkit/styles.css';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Providers } from './providers';
+import { WalletConnectLayout } from '@/components/WalletConnectLayout';
+import { CyberpunkBackground } from '@/components/cyber-background';
 
 
 export const viewport: Viewport = {
@@ -43,7 +45,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background">
-        <Providers>{children}</Providers>
+      <CyberpunkBackground />
+        <Providers>
+          <WalletConnectLayout />
+          <div className="container mx-auto max-w-screen-md relative z-10">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );
