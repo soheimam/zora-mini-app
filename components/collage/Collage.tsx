@@ -24,7 +24,7 @@ export function Collage({ tokens, displayName, selectedToken, setSelectedToken }
       <div className="relative w-full min-w-[320px] max-w-[480px] md:max-w-2xl mx-auto px-2 py-4">
         {/* Main title overlapping the grid */}
         <h1 className="absolute left-1/2 top-8 -translate-x-1/2 text-4xl md:text-5xl lg:text-6xl font-bold text-blue-500 z-40"
-            >
+            style={{ fontFamily: 'monospace' }}>
           {displayName || 'soheybuildsbase'}
         </h1>
 

@@ -36,8 +36,12 @@ export default function App() {
 
   return (
     <div className="flex flex-col min-h-screen font-sans text-[var(--app-foreground)] mini-app-theme from-[var(--app-background)] to-[var(--app-gray)]">      
+      
+      
       <main className="flex-1 flex min-h-screen flex-col items-center justify-center p-0">
         <ZoraWalletInput />
+        
+        
       </main>
 
       <footer className="mt-2 pt-4 flex justify-center">
