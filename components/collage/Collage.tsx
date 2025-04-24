@@ -16,7 +16,7 @@ export function Collage({ tokens, displayName, selectedToken, setSelectedToken }
 
   return (
     <div className="w-full">
-      <div className="relative w-full max-w-[800px] mx-auto px-2 py-4">
+      <div id="collage-container" className="relative w-full max-w-[800px] mx-auto px-2 py-4">
         {/* Main title below the grid */}
         <div className="text-center my-4 py-3">
           <h1 className="text-2xl md:text-3xl font-bold text-blue-500"
