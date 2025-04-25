@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { useState, useMemo } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, usePublicClient } from "wagmi";
 import { Hex, Address, parseEther, formatEther, type PublicClient } from "viem";
 import { buyCoin } from "./BuyCoin";
 import { simulateCoinBuy } from "@/lib/zora";
 // import { publicClient } from "@/lib/viem";
 import { ConnectWallet } from "@coinbase/onchainkit/wallet";
+
 
 interface CombinedMintAndBuyProps {
   tokenAddress: string;
@@ -26,6 +27,7 @@ export function CombinedMintAndBuy({
 }: Partial<CombinedMintAndBuyProps>) {
   // Use the specified contract address
   const coinAddress = "0x3aa49e8bbd095b7fef05f5868afb0604a89c9a96" as Address;
+  const publicClient = usePublicClient();   
   
   const [buyAmount, setBuyAmount] = useState<string>("0.001");
   const [isSimulating, setIsSimulating] = useState<boolean>(false);
@@ -83,7 +85,8 @@ export function CombinedMintAndBuy({
       const simulation = await simulateCoinBuy({
         target: coinAddress,
         address: address as Hex,
-        requestedOrderSize: parseEther(buyAmount)
+        requestedOrderSize: parseEther(buyAmount),
+        publicClient: publicClient
       });
       
       console.log("Simulation result:", simulation);

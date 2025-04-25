@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { CollageSolo } from "@/components/collage/CollageSolo";
 import { headers } from "next/headers";
+import { CombinedMintAndBuy } from "@/components/CombinedMintAndBuyComponent";
 
 async function fetchTokenData(address: string) {
   try {
@@ -71,7 +72,7 @@ export default async function Page({
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 p-4">
-      <CollageSolo
+      {/* <CollageSolo
         tokenAddress={tokenData.tokenAddress}
         title={tokenData.title}
         holders={tokenData.holders}
@@ -82,6 +83,13 @@ export default async function Page({
         created={tokenData.created}
         collection={tokenData.collection}
         imagePath={tokenData.imagePath}
+      /> */}
+      <CombinedMintAndBuy
+        tokenAddress={tokenData.tokenAddress}
+        tokenImage={tokenData.imagePath}
+        tokenName={tokenData.title}
+        priceInEth={tokenData.priceInEth}
+        priceInUsd={tokenData.priceInUsd}
       />
     </div>
   );

@@ -14,11 +14,13 @@ dotenv.config();
 export async function simulateCoinBuy({
     target,
     address,
-    requestedOrderSize
+    requestedOrderSize,
+    publicClient
 }: {
     target: Address;
     address: Hex;
     requestedOrderSize: bigint;
+    publicClient: PublicClient;
 }) {
     try {
       console.log(`Starting simulation for contract: ${target}`);
@@ -26,18 +28,7 @@ export async function simulateCoinBuy({
       
       const RPC_URL = process.env.NEXT_PUBLIC_RPC_URL;
       
-      // Set up viem clients
-      const publicClient = createPublicClient({
-          chain: base,
-          transport: http(RPC_URL),
-        });
-         
-      const walletClient = createWalletClient({
-          account: address,
-          chain: base,
-          transport: http(RPC_URL),
-        });
-
+   
 
       // Check if public client is valid
       console.log("Checking public client validity...");
@@ -58,19 +49,19 @@ export async function simulateCoinBuy({
         }
       };
 
-      const simulation = await tradeCoin(buyParams, walletClient, publicClient);
-      console.log("Simulation:", simulation);
-      
-      // const simulation = await simulateBuy({
-      //   target,
-      //   requestedOrderSize,
-      //   publicClient,
-      // });
+      // const simulation = await tradeCoin(buyParams, walletClient, publicClient);
       // console.log("Simulation:", simulation);
       
-      // console.log("Simulation successful");
-      // console.log("Order size", simulation.orderSize);
-      // console.log("Amount out", simulation.amountOut);
+      const simulation = await simulateBuy({
+        target,
+        requestedOrderSize,
+        publicClient,
+      });
+      console.log("Simulation:", simulation);
+      
+      console.log("Simulation successful");
+      console.log("Order size", simulation.orderSize);
+      console.log("Amount out", simulation.amountOut);
       
       return simulation;
     } catch (error) {
